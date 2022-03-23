@@ -4,17 +4,16 @@ ssh-remote-action
 
 使用样例,结合scp-remote-action完成一个springcloud项目部署:
 
-    - name: stop and backup service
-      uses: huaweicloud/ssh-remote-action@v1.2
-      with:
-        ipaddr: "182.92.156.203"
-        username: "root"
-        password: ${{ secrets.CCE_PASSWORD }}
-        commands: |
-          systemctl stop demoapp.service
-          mkdir -p /opt/backup/demoapp/\$currentDate
-          mv /usr/local/demoapp.jar /opt/backup/demoapp/\$currentDate/
-          
+- name: stop and backup service
+  uses: huaweicloud/ssh-remote-action@v1.2
+  with:
+    ipaddr: "182.92.156.203"
+    username: "root"
+    password: ${{ secrets.CCE_PASSWORD }}
+    commands: |
+      systemctl stop demoapp.service
+      mkdir -p /opt/backup/demoapp/\$currentDate
+      mv /usr/local/demoapp.jar /opt/backup/demoapp/\$currentDate/
 - name: deploy service
   uses: huaweicloud/scp-remote-action@v1.1
   with:
@@ -28,13 +27,13 @@ ssh-remote-action
       file bin/start-demoapp.sh /usr/local/
       file bin/stop-demoapp.sh /usr/local/
 
-  - name: reload and start service
-      uses: huaweicloud/ssh-remote-action@v1.2
-      with:
-        ipaddr: "182.92.156.203"
-        username: "root"
-        password: ${{ secrets.CCE_PASSWORD }}
-        commands: |
-          chmod 755 /usr/local/start-demoapp.sh && chmod 755 /usr/local/stop-demoapp.sh
-          systemctl daemon-reload
-          systemctl start demoapp.service
+- name: reload and start service
+  uses: huaweicloud/ssh-remote-action@v1.2
+  with:
+    ipaddr: "182.92.156.203"
+    username: "root"
+    password: ${{ secrets.CCE_PASSWORD }}
+    commands: |
+      chmod 755 /usr/local/start-demoapp.sh && chmod 755 /usr/local/stop-demoapp.sh
+      systemctl daemon-reload
+      systemctl start demoapp.service
