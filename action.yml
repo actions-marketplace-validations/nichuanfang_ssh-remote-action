@@ -1,5 +1,5 @@
-name: 'ssh-remote-action'
-description: 'help user sent ssh command to remote server node'
+name: 'Batch Remote SSH Commands'
+description: 'help user sent batch ssh command to remote server node'
 branding:
   color: 'red'
   icon: 'chevron-up'
@@ -18,7 +18,7 @@ inputs:
     default: '1234567890'
   commands: 
     required: true
-    description: 'the remote commands'
+    description: 'the batch remote ssh commands'
     default: |
              ls -la
              ps -ef | grep java
