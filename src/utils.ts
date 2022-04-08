@@ -75,7 +75,7 @@ export function checkCommandsDanger(commands: string[]): boolean {
 export function checkCommandDanger(command: string): boolean {
   let isCommandDanger = false
   for (var danCommand in context.dangerCommandSet) {
-    if (command.indexOf(danCommand) > -1) {
+    if (command.includes(danCommand)) {
       core.info(
         'find danger operation "' +
           danCommand +

@@ -961,16 +961,16 @@ const core = __importStar(__webpack_require__(470));
 const cp = __importStar(__webpack_require__(129));
 function execRemoteSSHCommands(inputs) {
     return __awaiter(this, void 0, void 0, function* () {
-        for (var i = 0; i < inputs.commands.length; i++) {
-            core.info('exec command:' + inputs.commands[i]);
-            let sshpassCommand = 'sshpass -p ' +
+        for (const command in inputs.commands) {
+            core.info('exec command:' + command);
+            const sshpassCommand = 'sshpass -p ' +
                 inputs.password +
                 ' ssh -o StrictHostKeyChecking=no ' +
                 inputs.username +
                 '@' +
                 inputs.ipaddr +
                 " '" +
-                inputs.commands[i] +
+                command +
                 "'";
             yield execRemoteSSHCommand(sshpassCommand);
         }
@@ -983,7 +983,7 @@ exports.execRemoteSSHCommands = execRemoteSSHCommands;
  */
 function execRemoteSSHCommand(sshcommand) {
     return __awaiter(this, void 0, void 0, function* () {
-        let sshpassCommandResult = yield (cp.execSync(sshcommand) || '').toString();
+        const sshpassCommandResult = yield (cp.execSync(sshcommand) || '').toString();
         core.info('result ' + sshpassCommandResult);
     });
 }
@@ -2127,7 +2127,7 @@ exports.checkCommandsDanger = checkCommandsDanger;
 function checkCommandDanger(command) {
     let isCommandDanger = false;
     for (var danCommand in context.dangerCommandSet) {
-        if (command.indexOf(danCommand) > -1) {
+        if (command.includes(danCommand)) {
             core.info('find danger operation "' +
                 danCommand +
                 '" in command line "' +
@@ -2210,13 +2210,13 @@ const os = __importStar(__webpack_require__(87));
 function installSshPassOnSystem() {
     return __awaiter(this, void 0, void 0, function* () {
         const isInstalld = yield checkSshpassInstall();
-        core.info(`is install ${isInstalld}`);
+        core.info("is install" + isInstalld);
         if (isInstalld) {
             core.info('sshPass already installed and set to the path');
             return isInstalld;
         }
         core.info('start install sshpass');
-        let platform = os.platform();
+        const platform = os.platform();
         installSshPassByPlatform(platform);
         return checkSshpassInstall();
     });
@@ -2228,13 +2228,13 @@ exports.installSshPassOnSystem = installSshPassOnSystem;
  */
 function checkSshpassInstall() {
     return __awaiter(this, void 0, void 0, function* () {
-        let sshPass = yield io.which('sshpass');
+        const sshPass = yield io.which('sshpass');
         if (!sshPass) {
             core.info('sshPass not installed or not set to the path');
             return false;
         }
         core.info('sshPass already installed and set to the path');
-        let sshPassVersion = (cp.execSync(`${sshPass} -V`) || '').toString();
+        const sshPassVersion = (cp.execSync(`${sshPass} -V`) || '').toString();
         core.info(sshPassVersion);
         return true;
     });
@@ -2261,7 +2261,7 @@ exports.installSshPassByPlatform = installSshPassByPlatform;
  */
 function installSshPassOnMacos() {
     return __awaiter(this, void 0, void 0, function* () {
-        core.info('current system is Ubuntu,use apt-get to install sshpass');
+        core.info('current system is MacOS,use brew to install sshpass');
         yield (cp.execSync(`wget https://raw.githubusercontent.com/kadwanev/bigboybrew/master/Library/Formula/sshpass.rb && brew install sshpass.rb`) || '').toString();
     });
 }
@@ -2289,7 +2289,7 @@ function installSshPassOnLinux() {
         }
         if (osRelease.indexOf('SUSE') > -1) {
             core.info('current system is OpenSuSE,use Zypper to install sshpass');
-            installCommand = `zypper in docker`;
+            installCommand = `zypper in sshpass`;
         }
         yield installSshPassByCommand(installCommand);
     });

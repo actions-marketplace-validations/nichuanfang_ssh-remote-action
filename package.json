@@ -13,7 +13,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/lengxing-lx/ssh-remote-action.git"
+    "url": "git+https://github.com/huaweicloud/ssh-remote-action.git"
   },
   "keywords": [
     "actions",

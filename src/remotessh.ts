@@ -5,9 +5,9 @@ import * as context from './context'
 export async function execRemoteSSHCommands(
   inputs: context.Inputs
 ): Promise<void> {
-  for (var i = 0; i < inputs.commands.length; i++) {
-    core.info('exec command:' + inputs.commands[i])
-    let sshpassCommand =
+  for (const command in inputs.commands) {
+    core.info('exec command:' + command)
+    const sshpassCommand =
       'sshpass -p ' +
       inputs.password +
       ' ssh -o StrictHostKeyChecking=no ' +
@@ -15,7 +15,7 @@ export async function execRemoteSSHCommands(
       '@' +
       inputs.ipaddr +
       " '" +
-      inputs.commands[i] +
+      command +
       "'"
     await execRemoteSSHCommand(sshpassCommand)
   }
@@ -26,6 +26,6 @@ export async function execRemoteSSHCommands(
  * @param sshcommand 执行远程命令
  */
 export async function execRemoteSSHCommand(sshcommand: string): Promise<void> {
-  let sshpassCommandResult = await (cp.execSync(sshcommand) || '').toString()
+  const sshpassCommandResult = await (cp.execSync(sshcommand) || '').toString()
   core.info('result ' + sshpassCommandResult)
 }
