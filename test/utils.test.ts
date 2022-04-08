@@ -13,35 +13,35 @@ test('check ipv4', () => {
 
 test('check inputs', () => {
   const inputs: context.Inputs = {
-    ipaddr: '182.92.156.203',
-    username: 'root',
+    ipaddr: '***.***.***.***',
+    username: 'service',
     password: '*********',
     commands: ['docker images', 'docker ps -a', 'docker info']
   }
 
   const inputs1: context.Inputs = {
-    ipaddr: '182.92.156.203',
-    username: '',
-    password: '',
+    ipaddr: '***.***.***.***',
+    username: 'service',
+    password: '*********',
     commands: ['docker images', 'docker ps -a', 'docker info']
   }
 
   const inputs2: context.Inputs = {
-    ipaddr: '182.92.156.203',
-    username: 'root',
+    ipaddr: '***.***.***.***',
+    username: 'service',
     password: '*********',
     commands: []
   }
 
   const inputs3: context.Inputs = {
     ipaddr: '182.92.156.203.255',
-    username: 'root',
+    username: 'service',
     password: '*********',
     commands: ['docker images', 'docker ps -a', 'docker info']
   }
   const inputs4: context.Inputs = {
     ipaddr: '182.92.156',
-    username: 'root',
+    username: 'service',
     password: '*********',
     commands: ['docker images', 'docker ps -a', 'docker info']
   }

@@ -2210,7 +2210,7 @@ const os = __importStar(__webpack_require__(87));
 function installSshPassOnSystem() {
     return __awaiter(this, void 0, void 0, function* () {
         const isInstalld = yield checkSshpassInstall();
-        core.info("is install" + isInstalld);
+        core.info('is install' + isInstalld);
         if (isInstalld) {
             core.info('sshPass already installed and set to the path');
             return isInstalld;

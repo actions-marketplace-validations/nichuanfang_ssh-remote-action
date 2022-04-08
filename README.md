@@ -11,7 +11,7 @@
 - name: stop and backup service
   uses: huaweicloud/ssh-remote-action@v1.2
   with:
-    ipaddr: "182.92.156.203"
+    ipaddr: "***.***.***.**"
     username: ${{ secrets.USERNAME }}
     password: ${{ secrets.PASSWORD }}
     commands: |
@@ -22,7 +22,7 @@
 - name: deploy service
   uses: huaweicloud/scp-remote-action@v1.1
   with:
-    ipaddr: "192.168.130.159"
+    ipaddr: "***.***.***.**"
     username: ${{ secrets.USERNAME }}
     password: ${{ secrets.PASSWORD }}
     operation_type: upload
@@ -35,7 +35,7 @@
 - name: reload and start service
   uses: huaweicloud/ssh-remote-action@v1.2
   with:
-    ipaddr: "182.92.156.203"
+    ipaddr: "***.***.***.**"
     username: ${{ secrets.USERNAME }}
     password: ${{ secrets.PASSWORD }}
     commands: |
