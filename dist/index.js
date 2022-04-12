@@ -961,8 +961,9 @@ const core = __importStar(__webpack_require__(470));
 const cp = __importStar(__webpack_require__(129));
 function execRemoteSSHCommands(inputs) {
     return __awaiter(this, void 0, void 0, function* () {
-        for (const command in inputs.commands) {
-            core.info('exec command:' + command);
+        //  for (const command in inputs.commands) {
+        for (let i = 0; i < inputs.commands.length; i++) {
+            core.info('exec command:' + inputs.commands[i]);
             const sshpassCommand = 'sshpass -p ' +
                 inputs.password +
                 ' ssh -o StrictHostKeyChecking=no ' +
@@ -970,7 +971,7 @@ function execRemoteSSHCommands(inputs) {
                 '@' +
                 inputs.ipaddr +
                 " '" +
-                command +
+                inputs.commands[i] +
                 "'";
             yield execRemoteSSHCommand(sshpassCommand);
         }
@@ -2097,9 +2098,9 @@ exports.checkIPV4Addr = checkIPV4Addr;
  * @returns
  */
 function checkParameterIsNull(parameter) {
-    return (parameter == undefined ||
-        parameter == null ||
-        parameter == '' ||
+    return (parameter === undefined ||
+        parameter === null ||
+        parameter === '' ||
         parameter.trim().length == 0);
 }
 exports.checkParameterIsNull = checkParameterIsNull;
@@ -2109,8 +2110,8 @@ exports.checkParameterIsNull = checkParameterIsNull;
  * @returns
  */
 function checkCommandsDanger(commands) {
-    var isCommandsDanger = false;
-    for (var command in commands) {
+    let isCommandsDanger = false;
+    for (const command in commands) {
         if (checkCommandDanger(command)) {
             isCommandsDanger = true;
             break;
@@ -2126,7 +2127,7 @@ exports.checkCommandsDanger = checkCommandsDanger;
  */
 function checkCommandDanger(command) {
     let isCommandDanger = false;
-    for (var danCommand in context.dangerCommandSet) {
+    for (const danCommand in context.dangerCommandSet) {
         if (command.includes(danCommand)) {
             core.info('find danger operation "' +
                 danCommand +

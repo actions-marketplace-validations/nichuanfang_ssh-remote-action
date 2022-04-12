@@ -44,9 +44,9 @@ export function checkIPV4Addr(ipaddr: string): boolean {
  */
 export function checkParameterIsNull(parameter: string): boolean {
   return (
-    parameter == undefined ||
-    parameter == null ||
-    parameter == '' ||
+    parameter === undefined ||
+    parameter === null ||
+    parameter === '' ||
     parameter.trim().length == 0
   )
 }
@@ -57,8 +57,8 @@ export function checkParameterIsNull(parameter: string): boolean {
  * @returns
  */
 export function checkCommandsDanger(commands: string[]): boolean {
-  var isCommandsDanger: boolean = false
-  for (var command in commands) {
+  let isCommandsDanger = false
+  for (const command in commands) {
     if (checkCommandDanger(command)) {
       isCommandsDanger = true
       break
@@ -74,7 +74,7 @@ export function checkCommandsDanger(commands: string[]): boolean {
  */
 export function checkCommandDanger(command: string): boolean {
   let isCommandDanger = false
-  for (var danCommand in context.dangerCommandSet) {
+  for (const danCommand in context.dangerCommandSet) {
     if (command.includes(danCommand)) {
       core.info(
         'find danger operation "' +

@@ -9,8 +9,10 @@ test('check ipv4', () => {
   expect(utils.checkIPV4Addr('10.197.68.254')).toEqual(true)
   expect(utils.checkIPV4Addr('10.197.68.256')).toEqual(false)
   expect(utils.checkIPV4Addr('10.197.68.256.19')).toEqual(false)
+  console.info("check ipv4 127.0.0.1")
+  expect(utils.checkIPV4Addr('127.0.0.1.')).toEqual(true)
 })
-
+/**
 test('check inputs', () => {
   const inputs: context.Inputs = {
     ipaddr: '***.***.***.***',
@@ -64,3 +66,4 @@ test('check commands danger', () => {
   expect(utils.checkCommandsDanger(commands2)).toEqual(true)
   expect(utils.checkCommandsDanger(commands3)).toEqual(true)
 })
+ */
