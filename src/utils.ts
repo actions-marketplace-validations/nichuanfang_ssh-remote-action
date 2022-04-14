@@ -58,8 +58,8 @@ export function checkParameterIsNull(parameter: string): boolean {
  */
 export function checkCommandsDanger(commands: string[]): boolean {
   let isCommandsDanger = false
-  for (const command in commands) {
-    if (checkCommandDanger(command)) {
+  for (let i = 0; i < commands.length; i++) {
+    if (checkCommandDanger(commands[i])) {
       isCommandsDanger = true
       break
     }
