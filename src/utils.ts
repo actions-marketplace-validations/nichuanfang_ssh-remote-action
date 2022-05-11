@@ -74,11 +74,12 @@ export function checkCommandsDanger(commands: string[]): boolean {
  */
 export function checkCommandDanger(command: string): boolean {
   let isCommandDanger = false
-  for (const danCommand in context.dangerCommandSet) {
-    if (command.includes(danCommand)) {
+  const dangerCommandSet = context.dangerCommandSet
+  for (let i = 0; i < dangerCommandSet.length; i++) {
+    if (command.includes(dangerCommandSet[i])) {
       core.info(
         'find danger operation "' +
-          danCommand +
+          dangerCommandSet[i] +
           '" in command line "' +
           command +
           '",please remove it '
