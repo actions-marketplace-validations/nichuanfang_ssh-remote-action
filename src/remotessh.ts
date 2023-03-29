@@ -11,7 +11,9 @@ export async function execRemoteSSHCommands(
     const sshpassCommand =
       'sshpass -p ' +
       inputs.password +
-      ' ssh -o StrictHostKeyChecking=no ' +
+      ' ssh -o StrictHostKeyChecking=no ' + 
+      ' -p ' + 
+      inputs.port + ' ' +
       inputs.username +
       '@' +
       inputs.ipaddr +

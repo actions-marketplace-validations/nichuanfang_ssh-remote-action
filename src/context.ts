@@ -2,6 +2,7 @@ import * as core from '@actions/core'
 
 export interface Inputs {
   ipaddr: string
+  port: string
   username: string
   password: string
   commands: string[]
@@ -25,6 +26,7 @@ export const dangerCommandSet: string[] = [
 export function getInputs(): Inputs {
   return {
     ipaddr: core.getInput('ipaddr', {required: true}),
+    port: core.getInput('port', {required: true}),
     username: core.getInput('username', {required: true}),
     password: core.getInput('password', {required: true}),
     commands: core.getMultilineInput('commands', {required: true})
