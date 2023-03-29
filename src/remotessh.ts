@@ -20,6 +20,7 @@ export async function execRemoteSSHCommands(
       " '" +
       inputs.commands[i] +
       "'"
+     core.info(sshpassCommand)
     await execRemoteSSHCommand(sshpassCommand)
   }
 }
