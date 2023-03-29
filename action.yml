@@ -1,4 +1,4 @@
-name: 'Batch Remote SSH Commands'
+name: 'Batch Remote SSH Commands With Port'
 description: 'help user sent batch ssh command to remote server node'
 branding:
   color: 'red'
