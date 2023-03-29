@@ -26,7 +26,7 @@ export const dangerCommandSet: string[] = [
 export function getInputs(): Inputs {
   return {
     ipaddr: core.getInput('ipaddr', {required: true}),
-    port: core.getInput('port', {required: true}),
+    port: core.getInput('port', {required: false}),
     username: core.getInput('username', {required: true}),
     password: core.getInput('password', {required: true}),
     commands: core.getMultilineInput('commands', {required: true})

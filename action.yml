@@ -8,6 +8,10 @@ inputs:
   ipaddr: 
     required: true
     description: 'the remote server node ip address'
+  port: 
+    required: false
+    description: 'the remote server node login port'
+    default: '22'
   username: 
     required: true
     description: 'the remote server node login username'
